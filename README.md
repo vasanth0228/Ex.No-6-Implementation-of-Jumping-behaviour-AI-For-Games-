@@ -1,12 +1,9 @@
 # Ex.No: 6  Implementation of Jumping  behaviour- Unity
-
-### DATE:                                                                            
-### REGISTER NUMBER : 
-
+### DATE:  02/09/2026                                                                       
+### REGISTER NUMBER : 2305002027
 ### AIM: 
 To write a program to simulate the process of jumping in Unity.
-
-### PROCEDURE:
+### Algorithm:
 ```
 1. Create a new 3D Unity project
 2. Add a Plane
@@ -23,7 +20,8 @@ Press Play
 Press Spacebar to jump
 Your cube should only jump when touching the ground
 ```
-### PROGRAM:
+###
+**Program **
 ```
 using UnityEngine;
 
@@ -31,7 +29,8 @@ public class PlayerJump : MonoBehaviour
 {
     private Rigidbody rb;
     public float jumpForce = 5f;
-    
+    private bool isGrounded;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,25 +38,37 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) )
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            
+            isGrounded = false;
         }
     }
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
 }
 ```
-### OUTPUT:
+### Output:
+
+##### mp3
+
+
+
+https://github.com/user-attachments/assets/8aab62ba-aaf5-4a65-afe8-a5ecbbb2de05
+
+
+##### img
+![Adhithya_image](https://github.com/user-attachments/assets/eeb0fc13-76f1-4dc4-a4e5-307aa3436068)
 
 
 
 
 
-
-
-
-
-### RESULT:
+### Result:
 Thus the simple jumping behavior was implemented successfully.
